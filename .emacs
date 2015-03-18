@@ -9,9 +9,11 @@
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(delete-selection-mode t)
+ '(global-visual-line-mode t)
  '(helm-mode t)
  '(org-CUA-compatible nil)
  '(org-replace-disputed-keys nil)
+ '(projectile-global-mode t)
  '(recentf-mode t)
  '(shift-select-mode nil))
 (custom-set-faces
@@ -40,7 +42,7 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
-(setq color-theme-is-global t)
+(setq-default color-theme-is-global t)
 (color-theme-molokai)
 
 ;; Font
@@ -48,28 +50,37 @@
 
 (require 'package)
 (package-initialize)
+(add-to-list 'package-archives
+	     '("melpa.org" . "http://melpa.org/packages/"))
 
 ;; elpa package list installation
 (defun update-packages ()
    (setq jpk-packages
-      '(
+	   '(
+		async
         helm
         js2-mode
+		projectile
+		helm-projectile
         ))
 
+   (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
+							;("melpa-stable" . "http://stable.melpa.org/packages/")
+							))
+
   (package-initialize)
-  (add-to-list 'package-archives
-	       '("melpa" . "http://melpa.org/packages/"))
-  (add-to-list 'package-archives
-	       '("org" . "http://orgmode.org/elpa/"))
+  ;; (add-to-list 'package-archives
+  ;; 	       '("melpa.org" . "http://melpa.org/packages/"))
+  ;; (add-to-list 'package-archives
+  ;; 	       '("org" . "http://orgmode.org/elpa/"))
 
   (when (not package-archive-contents)
     (package-refresh-contents))
 
   (dolist (pkg jpk-packages)
     (when (and (not (package-installed-p pkg))
-	       (assoc pkg package-archive-contents))
-      (package-install pkg)))
+			   (assoc pkg package-archive-contents))
+		(package-install pkg)))
 
   (defun package-list-unaccounted-packages ()
     "Like `package-list-packages', but shows only the packages that
@@ -84,11 +95,15 @@
 
 )
 
+(update-packages)
+
 ;; Helm
 (require 'helm-config)
 
 (setq helm-split-window-in-side-p t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source t) ; move to end or beginning of source when reaching top or bottom of source.
+
+;(defalias 'helm-buffer-match-major-mode 'helm-buffers-match-function)
 
 (helm-mode 1)
 
@@ -100,6 +115,27 @@
 ;; js2-mode
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
-;; KEY BINDINGS
+;; file paths autocomplete
+(global-unset-key (kbd "C-SPC"))
+(global-set-key (kbd "C-SPC") 'my-expand-file-name-at-point)
+(defun my-expand-file-name-at-point ()
+  "Use hippie-expand to expand the filename"
+  (interactive)
+  (let ((hippie-expand-try-functions-list '(try-complete-file-name-partially try-complete-file-name)))
+    (call-interactively 'hippie-expand)))
+
+;; projectile
+(require 'projectile)
+(require 'helm-projectile)
+(helm-projectile-on)
+(projectile-global-mode)
+
+;; yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;;;;;;;;;;;;;;;;;;
+;; KEY BINDINGS ;;
+;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-g") 'goto-line)
 (global-set-key (kbd "M-a") 'helm-M-x)
