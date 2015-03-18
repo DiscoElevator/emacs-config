@@ -62,6 +62,7 @@
         js2-mode
 		projectile
 		helm-projectile
+    yasnippet
         ))
 
    (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
