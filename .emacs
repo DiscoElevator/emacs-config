@@ -140,6 +140,21 @@
 ;; expand-region
 (require 'expand-region)
 
+(defun comment-eclipse () ;; TODO multiline comments
+  (interactive)
+  (let ((start (line-beginning-position))
+        (end (line-end-position)))
+    (when (or (not transient-mark-mode) (region-active-p))
+      (setq start (save-excursion
+                    (goto-char (region-beginning))
+                    (beginning-of-line)
+                    (point))
+            end (save-excursion
+                  (goto-char (region-end))
+                  (end-of-line)
+                  (point))))
+    (comment-or-uncomment-region start end)))
+
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
 ;;;;;;;;;;;;;;;;;;
@@ -148,3 +163,5 @@
 
 (global-set-key (kbd "M-;") 'er/expand-region)
 (global-set-key (kbd "M-:") 'er/contract-region)
+
+(global-set-key (kbd "C-/") 'comment-eclipse)
