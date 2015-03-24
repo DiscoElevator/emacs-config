@@ -47,6 +47,7 @@
 
 ;; Font
 (set-frame-font "Courier New-13")
+;(set-frame-font "Consolas-13")
 
 (require 'package)
 (package-initialize)
@@ -62,7 +63,7 @@
         js2-mode
 		projectile
 		helm-projectile
-    yasnippet
+		expand-region
         ))
 
    (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
@@ -107,6 +108,7 @@
 ;(defalias 'helm-buffer-match-major-mode 'helm-buffers-match-function)
 
 (helm-mode 1)
+;(setq helm-M-x-fuzzy-match t)
 
 ;; indent
 (setq-default tab-width 4)
@@ -117,7 +119,7 @@
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
 ;; file paths autocomplete
-(global-unset-key (kbd "C-SPC"))
+;(global-unset-key (kbd "C-SPC"))
 (global-set-key (kbd "C-SPC") 'my-expand-file-name-at-point)
 (defun my-expand-file-name-at-point ()
   "Use hippie-expand to expand the filename"
@@ -135,8 +137,14 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;; expand-region
+(require 'expand-region)
+
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
 ;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-g") 'goto-line)
 (global-set-key (kbd "M-a") 'helm-M-x)
+
+(global-set-key (kbd "M-;") 'er/expand-region)
+(global-set-key (kbd "M-:") 'er/contract-region)
