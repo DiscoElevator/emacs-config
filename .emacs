@@ -37,6 +37,9 @@
 
 ;; word wrap off
 (global-visual-line-mode 1)
+(setq-default truncate-lines nil)
+
+(setq mode-require-final-newline nil)
 
 ;; Color Theme
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
@@ -64,6 +67,7 @@
 		projectile
 		helm-projectile
 		expand-region
+		web-mode
         ))
 
    (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
@@ -114,6 +118,10 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 (setq-default tab-always-indent nil) ; make tab key call indent command or insert tab character, depending on cursor position
+(add-hook 'html-mode-hook
+          (lambda()
+            (setq sgml-basic-offset 4)
+            (setq indent-tabs-mode t)))
 
 ;; js2-mode
 (add-hook 'js-mode-hook 'js2-minor-mode)
@@ -155,6 +163,18 @@
                   (point))))
     (comment-or-uncomment-region start end)))
 
+(require 'web-mode)
+;(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e83070")
+;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
+(setq web-mode-ac-sources-alist
+  '(("css" . (ac-source-css-property))
+    ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+(setq web-mode-engines-alist
+      '(("ctemplate" . "\\.html\\'")))
+(setq web-mode-code-indent-offset 4)
+(setq web-mode-markup-indent-offset 4)
+
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
 ;;;;;;;;;;;;;;;;;;
@@ -164,4 +184,9 @@
 (global-set-key (kbd "M-;") 'er/expand-region)
 (global-set-key (kbd "M-:") 'er/contract-region)
 
-(global-set-key (kbd "C-/") 'comment-eclipse)
+(global-set-key (kbd "C-/") 'comment-eclipse) ; TODO doesn't work :(
+
+(global-set-key (kbd "<F8> n n") 'narrow-to-region)
+(global-set-key (kbd "<F8> n w") 'widen)
+
+;(global-set-key (kbd "<RET>") 'align-newline-and-indent) ; indent prev. line after RET
