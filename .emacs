@@ -68,6 +68,7 @@
 		helm-projectile
 		expand-region
 		web-mode
+		ace-jump-mode
         ))
 
    (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
@@ -164,7 +165,7 @@
     (comment-or-uncomment-region start end)))
 
 (require 'web-mode)
-;(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (set-face-attribute 'web-mode-html-tag-face nil :foreground "#e83070")
 ;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
 (setq web-mode-ac-sources-alist
@@ -174,6 +175,9 @@
       '(("ctemplate" . "\\.html\\'")))
 (setq web-mode-code-indent-offset 4)
 (setq web-mode-markup-indent-offset 4)
+(setq web-mode-tag-auto-close-style 2)
+
+(require 'ace-jump-mode)
 
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
@@ -189,4 +193,8 @@
 (global-set-key (kbd "<F8> n n") 'narrow-to-region)
 (global-set-key (kbd "<F8> n w") 'widen)
 
-;(global-set-key (kbd "<RET>") 'align-newline-and-indent) ; indent prev. line after RET
+  ;(global-set-key (kbd "<RET>") 'align-newline-and-indent) ; indent prev. line after RET
+
+(global-set-key (kbd "C-p") 'helm-projectile-find-file)
+
+(global-set-key (kbd "C-;") 'ace-jump-mode)
