@@ -37,7 +37,8 @@
 
 ;; word wrap off
 (global-visual-line-mode 1)
-(setq-default truncate-lines nil)
+;; (setq-default truncate-lines nil)
+(setq default-truncate-lines nil)
 
 (setq mode-require-final-newline nil)
 
@@ -178,6 +179,9 @@
 (setq web-mode-tag-auto-close-style 2)
 
 (require 'ace-jump-mode)
+
+;(require 'diff-hl)
+;(global-diff-hl-mode)
 
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
