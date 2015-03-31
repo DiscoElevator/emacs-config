@@ -13,6 +13,7 @@
  '(helm-mode t)
  '(org-CUA-compatible nil)
  '(org-replace-disputed-keys nil)
+ '(projectile-completion-system (quote helm))
  '(projectile-global-mode t)
  '(recentf-mode t)
  '(shift-select-mode nil))
@@ -120,6 +121,7 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 (setq-default tab-always-indent nil) ; make tab key call indent command or insert tab character, depending on cursor position
+(setq-default nxml-child-indent 4)
 (add-hook 'html-mode-hook
           (lambda()
             (setq sgml-basic-offset 4)
