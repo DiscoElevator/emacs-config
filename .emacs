@@ -27,6 +27,7 @@
  '(show-paren-match ((((class color) (background light)) (:background "azure2")))))
 
 (setq show-paren-style 'expression)
+;(setq show-paren-style 'mixed)
 (show-paren-mode 2)
 
 (setq make-backup-files nil) ;; Don't want any backup files
@@ -37,7 +38,7 @@
 (setq visible-bell 1)
 
 ;; word wrap off
-(global-visual-line-mode 1)
+(global-visual-line-mode t)
 ;; (setq-default truncate-lines nil)
 (setq default-truncate-lines nil)
 
@@ -179,11 +180,14 @@
 (setq web-mode-code-indent-offset 4)
 (setq web-mode-markup-indent-offset 4)
 (setq web-mode-tag-auto-close-style 2)
+(setq web-mode-enable-current-element-highlight t)
 
 (require 'ace-jump-mode)
 
 ;(require 'diff-hl)
 ;(global-diff-hl-mode)
+
+(setq org-todo-keywords '((type "TODO" "IN PROGRESS" "|" "DONE")))
 
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
