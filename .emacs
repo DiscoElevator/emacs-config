@@ -72,6 +72,7 @@
 		expand-region
 		web-mode
 		ace-jump-mode
+		diff-hl
         ))
 
    (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
@@ -184,8 +185,8 @@
 
 (require 'ace-jump-mode)
 
-;(require 'diff-hl)
-;(global-diff-hl-mode)
+(require 'diff-hl)
+(global-diff-hl-mode)
 
 (setq org-todo-keywords '((type "TODO" "IN PROGRESS" "|" "DONE")))
 
