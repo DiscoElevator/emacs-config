@@ -80,6 +80,7 @@
 		web-mode
 		ace-jump-mode
 		diff-hl
+		yasnippet
         ))
 
    (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
