@@ -1,4 +1,4 @@
-;(set-language-environment "UTF-8")
+                                        ;(set-language-environment "UTF-8")
 ;; Use UTF-8 for all character encoding.
 (set-language-environment 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -34,7 +34,7 @@
  '(show-paren-match ((((class color) (background light)) (:background "azure2")))))
 
 (setq show-paren-style 'expression)
-;(setq show-paren-style 'mixed)
+                                        ;(setq show-paren-style 'mixed)
 (show-paren-mode 2)
 
 (setq make-backup-files nil) ;; Don't want any backup files
@@ -60,31 +60,31 @@
 
 ;; Font
 (set-frame-font "Courier New-13")
-;(set-frame-font "Consolas-13")
+                                        ;(set-frame-font "Consolas-13")
 
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives
-	     '("melpa.org" . "http://melpa.org/packages/"))
+             '("melpa.org" . "http://melpa.org/packages/"))
 
 ;; elpa package list installation
 (defun update-packages ()
-   (setq jpk-packages
-	   '(
-		async
-        helm
-        js2-mode
-		projectile
-		helm-projectile
-		expand-region
-		web-mode
-		ace-jump-mode
-		diff-hl
-        ))
+  (setq jpk-packages
+        '(
+          async
+          helm
+          js2-mode
+          projectile
+          helm-projectile
+          expand-region
+          web-mode
+          ace-jump-mode
+          diff-hl
+          ))
 
-   (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
-							;("melpa-stable" . "http://stable.melpa.org/packages/")
-							))
+  (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
+                                        ;("melpa-stable" . "http://stable.melpa.org/packages/")
+                           ))
 
   (package-initialize)
   ;; (add-to-list 'package-archives
@@ -97,8 +97,8 @@
 
   (dolist (pkg jpk-packages)
     (when (and (not (package-installed-p pkg))
-			   (assoc pkg package-archive-contents))
-		(package-install pkg)))
+               (assoc pkg package-archive-contents))
+      (package-install pkg)))
 
   (defun package-list-unaccounted-packages ()
     "Like `package-list-packages', but shows only the packages that
@@ -107,11 +107,11 @@
     (interactive)
     (package-show-package-list
      (remove-if-not (lambda (x) (and (not (memq x jpk-packages))
-				     (not (package-built-in-p x))
-				     (package-installed-p x)))
-		    (mapcar 'car package-archive-contents))))
+                                     (not (package-built-in-p x))
+                                     (package-installed-p x)))
+                    (mapcar 'car package-archive-contents))))
 
-)
+  )
 
 (update-packages)
 
@@ -121,10 +121,10 @@
 (setq helm-split-window-in-side-p t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source t) ; move to end or beginning of source when reaching top or bottom of source.
 
-;(defalias 'helm-buffer-match-major-mode 'helm-buffers-match-function)
+                                        ;(defalias 'helm-buffer-match-major-mode 'helm-buffers-match-function)
 
 (helm-mode 1)
-;(setq helm-M-x-fuzzy-match t)
+                                        ;(setq helm-M-x-fuzzy-match t)
 
 ;; indent
 (setq-default tab-width 4)
@@ -136,11 +136,16 @@
             (setq sgml-basic-offset 4)
             (setq indent-tabs-mode t)))
 
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq tab-width 2)))
+
 ;; js2-mode
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
 ;; file paths autocomplete
-;(global-unset-key (kbd "C-SPC"))
+                                        ;(global-unset-key (kbd "C-SPC"))
 (global-set-key (kbd "C-SPC") 'my-expand-file-name-at-point)
 (defun my-expand-file-name-at-point ()
   "Use hippie-expand to expand the filename"
@@ -179,10 +184,10 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (set-face-attribute 'web-mode-html-tag-face nil :foreground "#e83070")
-;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
+                                        ;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
 (setq web-mode-ac-sources-alist
-  '(("css" . (ac-source-css-property))
-    ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+      '(("css" . (ac-source-css-property))
+        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 (setq web-mode-engines-alist
       '(("ctemplate" . "\\.html\\'")))
 (setq web-mode-code-indent-offset 4)
@@ -211,7 +216,7 @@
 (global-set-key (kbd "<F8> n n") 'narrow-to-region)
 (global-set-key (kbd "<F8> n w") 'widen)
 
-  ;(global-set-key (kbd "<RET>") 'align-newline-and-indent) ; indent prev. line after RET
+                                        ;(global-set-key (kbd "<RET>") 'align-newline-and-indent) ; indent prev. line after RET
 
 (global-set-key (kbd "C-p") 'helm-projectile-find-file)
 
