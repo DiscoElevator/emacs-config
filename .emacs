@@ -1,6 +1,6 @@
 ;(set-language-environment "UTF-8")
 ;; Use UTF-8 for all character encoding.
-(set-language-environment 'utf-8-unix)
+(set-language-environment 'utf-8)
 (set-default-coding-systems 'utf-8-unix)
 (set-selection-coding-system 'utf-8-unix)
 (set-locale-environment "en.UTF-8")
@@ -80,7 +80,6 @@
 		web-mode
 		ace-jump-mode
 		diff-hl
-		yasnippet
         ))
 
    (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
