@@ -142,7 +142,8 @@
             (setq tab-width 2)))
 
 ;; js2-mode
-(add-hook 'js-mode-hook 'js2-minor-mode)
+;; (add-hook 'js-mode-hook 'js2-minor-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;; file paths autocomplete
                                         ;(global-unset-key (kbd "C-SPC"))
