@@ -203,6 +203,23 @@
 
 (setq org-todo-keywords '((type "TODO" "IN PROGRESS" "|" "DONE")))
 
+;;;;;;;;;;;;;;;;;;;;;;
+;; Custom functions ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-narrow-script ()
+  (interactive)
+  (web-mode-element-content-select)
+  (narrow-to-region (region-beginning) (region-end))
+  (js2-mode)
+  )
+
+(defun my-widen-script ()
+  (interactive)
+  (widen)
+  (web-mode)
+  )
+
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
 ;;;;;;;;;;;;;;;;;;
