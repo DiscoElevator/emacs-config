@@ -1,10 +1,10 @@
 ;(set-language-environment "UTF-8")
 ;; Use UTF-8 for all character encoding.
 (set-language-environment 'utf-8)
-(set-default-coding-systems 'utf-8-unix)
-(set-selection-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8)
+(set-selection-coding-system 'utf-8)
 (set-locale-environment "en.UTF-8")
-(prefer-coding-system 'utf-8-unix)
+(prefer-coding-system 'utf-8)
 (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding
 
 (setenv "ERGOEMACS_KEYBOARD_LAYOUT" "us") ; US
