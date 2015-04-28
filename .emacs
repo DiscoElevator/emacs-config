@@ -18,6 +18,7 @@
  '(delete-selection-mode t)
  '(global-visual-line-mode t)
  '(helm-mode t)
+ '(js2-highlight-level 3)
  '(org-CUA-compatible nil)
  '(org-replace-disputed-keys nil)
  '(projectile-completion-system (quote helm))
@@ -184,6 +185,7 @@
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp?\\'" . web-mode))
 (set-face-attribute 'web-mode-html-tag-face nil :foreground "#e83070")
                                         ;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
 (setq web-mode-ac-sources-alist
