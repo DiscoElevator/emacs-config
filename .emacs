@@ -185,7 +185,7 @@
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsp?\\'" . web-mode))
 (set-face-attribute 'web-mode-html-tag-face nil :foreground "#e83070")
                                         ;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
 (setq web-mode-ac-sources-alist
