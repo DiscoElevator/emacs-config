@@ -17,6 +17,9 @@
  '(blink-cursor-mode nil)
  '(delete-selection-mode t)
  '(global-visual-line-mode t)
+ '(grep-find-ignored-files
+   (quote
+    (".#*" "*.o" "*~" "*.bin" "*.bak" "*.obj" "*.map" "*.ico" "*.pif" "*.lnk" "*.a" "*.ln" "*.blg" "*.bbl" "*.dll" "*.drv" "*.vxd" "*.386" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.jar" "*.exe")))
  '(helm-mode t)
  '(js2-highlight-level 3)
  '(org-CUA-compatible nil)
@@ -24,7 +27,8 @@
  '(projectile-completion-system (quote helm))
  '(projectile-global-mode t)
  '(recentf-mode t)
- '(shift-select-mode nil))
+ '(shift-select-mode nil)
+ '(tags-table-list (quote ("d:/work/ASP/TAGS"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -35,7 +39,7 @@
  '(show-paren-match ((((class color) (background light)) (:background "azure2")))))
 
 (setq show-paren-style 'expression)
-                                        ;(setq show-paren-style 'mixed)
+;; (setq show-paren-style 'mixed)
 (show-paren-mode 2)
 
 (setq make-backup-files nil) ;; Don't want any backup files
@@ -49,6 +53,9 @@
 (global-visual-line-mode t)
 ;; (setq-default truncate-lines nil)
 (setq default-truncate-lines nil)
+
+(setq-default show-trailing-whitespace t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (setq mode-require-final-newline nil)
 
@@ -81,6 +88,7 @@
           web-mode
           ace-jump-mode
           diff-hl
+          ;; editorconfig
           ))
 
   (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
@@ -160,6 +168,9 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 (projectile-global-mode)
+(setq projectile-generic-command "gfind . -type f -print0")
+;; (setq projectile-indexing-method 'alien)
+(setq projectile-indexing-method 'native)
 
 ;; yasnippet
 (require 'yasnippet)
@@ -205,6 +216,10 @@
 
 (setq org-todo-keywords '((type "TODO" "IN PROGRESS" "|" "DONE")))
 
+;; (require 'tern)
+;; (tern-mode)
+;; (setq tern-command '("tern"))
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom functions ;;
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -241,3 +256,5 @@
 (global-set-key (kbd "C-p") 'helm-projectile-find-file)
 
 (global-set-key (kbd "C-;") 'ace-jump-mode)
+
+(global-set-key (kbd "C-f") 'helm-occur)
