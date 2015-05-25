@@ -21,14 +21,30 @@
    (quote
     (".#*" "*.o" "*~" "*.bin" "*.bak" "*.obj" "*.map" "*.ico" "*.pif" "*.lnk" "*.a" "*.ln" "*.blg" "*.bbl" "*.dll" "*.drv" "*.vxd" "*.386" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.jar" "*.exe")))
  '(helm-mode t)
+ '(initial-scratch-message
+   #(";; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with Ctrl+O,
+;; then enter the text in that file's own buffer." 131 135
+                                                       (face ergoemacs-pretty-key)
+                                                       136 137
+                                                       (face ergoemacs-pretty-key)))
  '(js2-highlight-level 3)
- '(org-CUA-compatible nil)
+ '(org-CUA-compatible t)
  '(org-replace-disputed-keys nil)
+ '(org-special-ctrl-a/e t)
+ '(org-support-shift-select t)
  '(projectile-completion-system (quote helm))
  '(projectile-global-mode t)
+ '(recentf-menu-before "Close")
  '(recentf-mode t)
- '(shift-select-mode nil)
- '(tags-table-list (quote ("d:/work/ASP/TAGS"))))
+ '(scroll-error-top-bottom t)
+ '(set-mark-command-repeat-pop t)
+ '(smex-prompt-string
+   #("Alt+A " 0 3
+     (face ergoemacs-pretty-key)
+     4 5
+     (face ergoemacs-pretty-key)))
+ '(tags-table-list nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
