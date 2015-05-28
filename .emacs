@@ -17,33 +17,23 @@
  '(blink-cursor-mode nil)
  '(delete-selection-mode t)
  '(global-visual-line-mode t)
+ '(grep-find-ignored-directories
+   (quote
+    ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "node_modules" "dist" "lib")))
  '(grep-find-ignored-files
    (quote
     (".#*" "*.o" "*~" "*.bin" "*.bak" "*.obj" "*.map" "*.ico" "*.pif" "*.lnk" "*.a" "*.ln" "*.blg" "*.bbl" "*.dll" "*.drv" "*.vxd" "*.386" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.jar" "*.exe")))
  '(helm-mode t)
- '(initial-scratch-message
-   #(";; This buffer is for notes you don't want to save, and for Lisp evaluation.
-;; If you want to create a file, visit that file with Ctrl+O,
-;; then enter the text in that file's own buffer." 131 135
-                                                       (face ergoemacs-pretty-key)
-                                                       136 137
-                                                       (face ergoemacs-pretty-key)))
  '(js2-highlight-level 3)
- '(org-CUA-compatible t)
+ '(org-CUA-compatible nil)
  '(org-replace-disputed-keys nil)
- '(org-special-ctrl-a/e t)
- '(org-support-shift-select t)
  '(projectile-completion-system (quote helm))
  '(projectile-global-mode t)
- '(recentf-menu-before "Close")
+ '(projectile-globally-ignored-directories
+   (quote
+    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "node_modules")))
  '(recentf-mode t)
- '(scroll-error-top-bottom t)
- '(set-mark-command-repeat-pop t)
- '(smex-prompt-string
-   #("Alt+A " 0 3
-     (face ergoemacs-pretty-key)
-     4 5
-     (face ergoemacs-pretty-key)))
+ '(shift-select-mode nil)
  '(tags-table-list nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -195,21 +185,6 @@
 ;; expand-region
 (require 'expand-region)
 
-(defun comment-eclipse () ;; TODO multiline comments
-  (interactive)
-  (let ((start (line-beginning-position))
-        (end (line-end-position)))
-    (when (or (not transient-mark-mode) (region-active-p))
-      (setq start (save-excursion
-                    (goto-char (region-beginning))
-                    (beginning-of-line)
-                    (point))
-            end (save-excursion
-                  (goto-char (region-end))
-                  (end-of-line)
-                  (point))))
-    (comment-or-uncomment-region start end)))
-
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.jsp?\\'" . web-mode))
@@ -240,6 +215,21 @@
 ;; Custom functions ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
+(defun toggle-narrow-script ()
+  (interactive)
+  (defvar narrowed nil)
+  (if (eq narrowed t)
+      (progn
+        (my-widen-script)
+        (setq narrowed t)
+        )
+    (progn
+      (my-narrow-script)
+      (setq narrowed nil)
+      )
+    )
+  )
+
 (defun my-narrow-script ()
   (interactive)
   (web-mode-element-content-select)
@@ -252,6 +242,21 @@
   (widen)
   (web-mode)
   )
+
+(defun comment-eclipse () ;; TODO multiline comments
+  (interactive)
+  (let ((start (line-beginning-position))
+        (end (line-end-position)))
+    (when (or (not transient-mark-mode) (region-active-p))
+      (setq start (save-excursion
+                    (goto-char (region-beginning))
+                    (beginning-of-line)
+                    (point))
+            end (save-excursion
+                  (goto-char (region-end))
+                  (end-of-line)
+                  (point))))
+    (comment-or-uncomment-region start end)))
 
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGS ;;
