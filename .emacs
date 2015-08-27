@@ -55,6 +55,8 @@
 ;; disable sound alert
 (setq visible-bell 1)
 
+(setq mouse-drag-copy-region nil)
+
 ;; word wrap off
 (global-visual-line-mode t)
 ;; (setq-default truncate-lines nil)
@@ -94,6 +96,7 @@
           web-mode
           ace-jump-mode
           diff-hl
+          less-css-mode
           ;; editorconfig
           ))
 
