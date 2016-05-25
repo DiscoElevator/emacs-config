@@ -15,6 +15,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(compilation-read-command nil)
  '(delete-selection-mode t)
  '(global-visual-line-mode t)
  '(grep-find-ignored-directories
@@ -33,6 +34,11 @@
    (quote
     (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" "node_modules")))
  '(recentf-mode t)
+ '(safe-local-variable-values
+   (quote
+    ((compile-command concat "cd "
+                      (projectile-project-root)
+                      "ant" " & ant -Dserver.type=TOMCAT"))))
  '(shift-select-mode nil)
  '(tags-table-list nil))
 (custom-set-faces
@@ -190,6 +196,7 @@
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.jsp?\\'" . web-mode))
 (set-face-attribute 'web-mode-html-tag-face nil :foreground "#e83070")
                                         ;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
