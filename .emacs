@@ -87,7 +87,9 @@
 (require 'package)
 (package-initialize)
 (add-to-list 'package-archives
-             '("melpa.org" . "http://melpa.org/packages/"))
+             '(("gnu" . "http://elpa.gnu.org/packages/"),
+               ("melpa.org" . "http://melpa.org/packages/")
+               ))
 
 ;; elpa package list installation
 (defun update-packages ()
@@ -107,6 +109,7 @@
           ))
 
   (setq package-archives '(("melpa.org" . "http://melpa.org/packages/")
+                           ("gnu" . "http://elpa.gnu.org/packages/")
                                         ;("melpa-stable" . "http://stable.melpa.org/packages/")
                            ))
 
@@ -197,6 +200,7 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.jsp?\\'" . web-mode))
 (set-face-attribute 'web-mode-html-tag-face nil :foreground "#e83070")
                                         ;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#e830c0")
