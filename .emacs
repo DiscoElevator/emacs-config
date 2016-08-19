@@ -172,6 +172,7 @@
 ;; js2-mode
 ;; (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
 
 ;; file paths autocomplete
                                         ;(global-unset-key (kbd "C-SPC"))
@@ -231,8 +232,12 @@
   (eldoc-mode +1)
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
-  ;; (company-mode +1)
+  (company-mode +1)
   )
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
 (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
 ;; see https://github.com/Microsoft/TypeScript/blob/cc58e2d7eb144f0b2ff89e6a6685fb4deaa24fde/src/server/protocol.d.ts#L421-473 for the full list available options
 
